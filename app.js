@@ -49,3 +49,4 @@ module.exports = app;
 var databaseurl = "niftystock";
 var collections = ["NiftyI"];
 var db = require("mongojs").connect(databaseurl, collections);
+//comment
