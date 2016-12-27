@@ -48,5 +48,39 @@ module.exports = app;
 //connecting to mongodb server
 var databaseurl = "niftystock";
 var collections = ["NiftyI"];
-var db = require("mongojs").connect(databaseurl, collections);
-//comment
+var collections2 = ["GraphData"]
+var db = require("mongojs").connect(databaseurl, collections,collections2);
+
+//trying to fire query
+//per min
+db.NiftyI.find({Time: }, function (err, NiftyI) {
+    if(err || !NiftyI){
+        console.log("Time not found");
+    }else{
+        db.GraphData.save({Time: , Open: , High: , Low: , Close: , Volume: , OpenInterest: }, function (err, saved) {
+            if(err || !saved){
+                console.log("Data not saved");
+            }else{
+                console.log("Data Saved");
+            }
+        });
+
+    }
+
+})
+//per hour
+db.NiftyI.find({Time: }, function (err, NiftyI) {
+    if(err || !NiftyI){
+        console.log("Time not found");
+    }else{
+        db.GraphData.save({Time: , Open: , High: , Low: , Close: , Volume: , OpenInterest: }, function (err, saved) {
+            if(err || !saved){
+                console.log("Data not saved");
+            }else{
+                console.log("Data Saved");
+            }
+        });
+
+    }
+
+})
